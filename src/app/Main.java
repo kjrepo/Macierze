@@ -16,7 +16,7 @@ public class Main {
 		System.out.println("");
 
 
-		MyMatrix<Double> doubleTest = new MyMatrix(6,6);
+		MyMatrix<Double> doubleTest = new MyMatrix<Double>(6,6);
 		doubleTest.populate(rand ->  Double.valueOf(rand.nextInt(131072) - Math.pow(2, 16))/Math.pow(2, 16));
 		doubleTest.test();
 		
@@ -26,7 +26,7 @@ public class Main {
 		System.out.println("");
 
 		
-		MyMatrix<Float> floatTest = new MyMatrix(6,6);
+		MyMatrix<Float> floatTest = new MyMatrix<Float>(6,6);
 		floatTest.populate(rand -> ((float) rand.nextInt(zakres*2) - zakres)/zakres);
 		floatTest.test();
 		
@@ -39,6 +39,13 @@ public class Main {
 		System.out.println("Licznik "+liczba.top);
 		System.out.println("Mianownik "+liczba.bot);
 		System.out.println("W zapisie dziesietnym "+liczba.top.divide(liczba.bot));
+		
+		// Generowanie TC
+		
+		MyMatrix<TC> TCTest = new MyMatrix<TC>(6,6);
+		TCTest.populate(rand -> rand.nextTC());
+		TCTest.testG(t -> t.top.toString()+"/"+t.bot.toString());
+		
 		
 	}
 

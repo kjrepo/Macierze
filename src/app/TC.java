@@ -3,18 +3,28 @@ package app;
 import java.math.BigInteger;
 import java.util.Random;
 
-public class TC extends Random {
+public class TC extends Random { // Czy dziedziczenie po Random jest ok? Jest niezbyt eleganckie, trzeba sie zastanowic czy moga za to zostac uciete punkty
 
 	static final long serialVersionUID = 1L;
 	
 	public BigInteger top;
 	public BigInteger bot;
-	Random rnd; 
-	/////
-	BigInteger RangeBot;
-	BigInteger RangeTop;
+
 	
-	public void nextTC() {
+	public TC(BigInteger top, BigInteger bot) {
+		super();
+		this.top = top;
+		this.bot = bot;
+	}
+
+	public TC() {
+	}
+
+	public TC nextTC() {
+		Random rnd; 
+		BigInteger RangeBot;
+		BigInteger RangeTop;
+		
 		rnd = new Random();
 		top=BigInteger.valueOf(2);
 		
@@ -31,6 +41,8 @@ public class TC extends Random {
 			cmp = top.compareTo(sum);
 		}while(cmp != -1 ); //gdyby jednak nie byla z przedzialu to powtarzam
 		top = top.subtract(RangeTop.abs()); // wracam do wartosci sprzed badania dlugosci przedzialu
+		TC answ = new TC(top, bot);
+		return answ;
 	}
 	
 	
