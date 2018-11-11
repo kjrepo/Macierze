@@ -14,6 +14,16 @@ public class MyMatrix<T> {
 		this.width = width;
 	}
 	
+	public int getLenght()
+	{
+		return lenght;
+	}
+	
+	public Object getPartitionOfMatrix(int i, int j)
+	{
+		return matrix[i][j];
+	}
+	
 	public void populate(Function<TC, T> creator) {	//Function pozwala wklejac kawalki kody z poziomy wyzej, korzystam z tego w main 
 		TC rand = new TC();
 		for(int i = 0; i<lenght; i++)
