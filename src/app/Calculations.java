@@ -13,11 +13,18 @@ public class Calculations {
 		return i;
 	}
 	
-//TODO ogarnac mnozenie	
-	public Object multiplyMatrix(Object matrix, Vector vector)
+//https://www.programiz.com/java-programming/examples/multiply-matrix-function
+	public Object multiplyMatrix(Object matrix, Vector vector, int lenght)
 	{
 		Object solution = matrix;
-		
+        for(int counter = 0; counter < lenght; counter++) {
+            for (int counter2 = 0; counter2 < 1; counter2++) {
+                for (int counter3 = 0; counter3 < lenght; counter3++) {
+                    solution[counter][counter2] += matrix[counter][counter3] * vector[counter3][counter2];
+                }
+            }
+        }
+
 		return solution;
 	}
 }
