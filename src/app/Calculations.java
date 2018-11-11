@@ -16,7 +16,7 @@ public class Calculations {
 //https://www.programiz.com/java-programming/examples/multiply-matrix-function
 	public Object multiplyMatrix(Object matrix, Vector vector, int lenght)
 	{
-		Object solution = matrix;
+		Object solution;
         for(int counter = 0; counter < lenght; counter++) {
             for (int counter2 = 0; counter2 < 1; counter2++) {
                 for (int counter3 = 0; counter3 < lenght; counter3++) {
