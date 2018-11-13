@@ -113,14 +113,14 @@ public class MyMatrix<T> {
 		double epsilon = Math.pow(10, -13);
 		boolean isSolution = false;
 		
-		for(counter = 1 ; counter < lenght ; counter++)
+		for(counter = 1 ; counter <= lenght - 1 ; counter++)
 		{
-			for(counter2 = counter + 1 ; counter2 == lenght ; counter2++) // nigdy nie wchodzi w petle... 
+			for(counter2 = counter + 1 ; counter2 <= lenght ; counter2++) // nigdy nie wchodzi w petle... 
 			{
 				if(Math.abs((float) lol.get(counter).get(counter2)) < epsilon)
 					break;
 				multiplier = - ((float)(lol.get(counter2).get(counter))/ (float) lol.get(counter).get(counter2));
-				for(counter3 = counter + 1 ; counter3 == lenght + 1 ; counter3++)
+				for(counter3 = counter + 1 ; counter3 <= lenght + 1 ; counter3++)
 				{
 					//matrix[counter2][counter3] = matrix[counter2][counter3] + (multiplier * matrix[counter][counter3]);
 					Object o = ((float)lol.get(counter).get(counter2) + (float)(multiplier * (float)lol.get(counter).get(counter3)));
@@ -128,10 +128,10 @@ public class MyMatrix<T> {
 					lol.get(counter2).set(counter3, a);
 			}
 		}
-		for(counter = lenght ; counter == 1 ; counter--)
+		for(counter = lenght ; counter >= 1 ; counter--)
 		{
 			sum = (float) lol.get(counter).get(lenght+1);
-			for(counter2 = lenght ; counter2 == counter + 1 ; counter--)
+			for(counter2 = lenght ; counter2 >= counter + 1 ; counter--)
 			{
 				sum = sum - (float)((float)lol.get(counter).get(counter2) * (float) vector.get(counter2));
 			}
