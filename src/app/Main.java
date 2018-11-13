@@ -19,6 +19,10 @@ public class Main {
 		MyMatrix<Double> doubleTest = new MyMatrix<Double>(6,6);
 		doubleTest.populate(rand ->  Double.valueOf(rand.nextInt(131072) - Math.pow(2, 16))/Math.pow(2, 16));
 		doubleTest.test();
+		System.out.println("!!!!!!!");
+		doubleTest.populateL(rand ->  Double.valueOf(rand.nextInt(131072) - Math.pow(2, 16))/Math.pow(2, 16));
+		doubleTest.testL();
+		
 		
 		//Generowanie float
 		System.out.println("\n\n\n");
@@ -27,8 +31,12 @@ public class Main {
 
 		
 		MyMatrix<Float> floatTest = new MyMatrix<Float>(6,6);
-		floatTest.populate(rand -> ((float) rand.nextInt(zakres*2) - zakres)/zakres);
-		floatTest.test();
+		floatTest.populateL(rand -> ((float) rand.nextInt(zakres*2) - zakres)/zakres);
+		floatTest.testL();
+		floatTest.GaussEliminationFloat();
+		System.out.println("???????????????????");
+		floatTest.testL();
+		
 		
 		System.out.println("\n\n\n");
 		System.out.println("Stworzona liczba");
