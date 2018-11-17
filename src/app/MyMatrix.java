@@ -3,7 +3,7 @@ package app;
 
 public class MyMatrix<T> {
 
-	private int lenght;
+	private int height;
 	private int width; 
 	
 	//// nowy poczatek
@@ -17,9 +17,9 @@ public class MyMatrix<T> {
 	
 	
 	@SuppressWarnings("unchecked")
-	public MyMatrix(int lenght, int width, Class<T> type) {	
-		tab = (T[][]) new Object[lenght][width];
-		this.lenght = lenght;
+	public MyMatrix(int height, int width, Class<T> type) {	
+		tab = (T[][]) new Object[height][width];
+		this.height = height;
 		this.width = width;
 		
 		this.type = type;
@@ -27,7 +27,7 @@ public class MyMatrix<T> {
 	
 	public int getLenght()
 	{
-		return lenght;
+		return height;
 	}
 	
 	public T getPartitionOfMatrix(int i, int j)
@@ -41,20 +41,20 @@ public class MyMatrix<T> {
 		
 		TC rand = new TC();
 		if(type == Float.class) {
-			for(int i = 0; i<lenght; i++)
+			for(int i = 0; i<height; i++)
 				for(int j = 0; j < width; j++) {
 					Object o = ((float) rand.nextInt(zakres*2) - zakres)/zakres;
 					tab[i][j] = (T) o;
 				}
 			
 		}else if(type == Double.class){
-			for(int i = 0; i<lenght; i++)
+			for(int i = 0; i<height; i++)
 				for(int j = 0; j < width; j++) {
 					Object o = ((double) rand.nextInt(zakres*2) - zakres)/zakres;
 					tab[i][j] = (T) o;
 				}
 		}else if(type == TC.class){
-			for(int i = 0; i<lenght; i++)
+			for(int i = 0; i<height; i++)
 				for(int j = 0; j < width; j++) {
 					Object o = rand.nextTC();
 					tab[i][j] = (T) o;
@@ -67,7 +67,7 @@ public class MyMatrix<T> {
 
 	
 	public void test() {	
-		for(int i = 0; i<lenght; i++) {
+		for(int i = 0; i<height; i++) {
 				System.out.println("\n");
 			for(int j = 0; j < width; j++) {
 				
@@ -145,6 +145,13 @@ public class MyMatrix<T> {
 			return (T) TC.abs((TC) one);
 		}
 		return null;
+	}
+	
+	public void swap(int height1, int width1, int height2, int width2) {
+		
+		T temp = tab[height1][width1];
+		tab[height1][width1] = tab[height2][width2];
+		tab[height2][width2] = temp;
 	}
 	
 }

@@ -14,7 +14,7 @@ public class Main {
 
 		System.out.println("");
 		
-		MyMatrix<Float> test = new MyMatrix<>(6, 6, Float.class);
+		MyMatrix<Float> test = new MyMatrix<>(100, 100, Float.class);
 		test.pop();
 		test.test();
 		
