@@ -18,7 +18,7 @@ public class MyMatrix<T> {
 	
 	@SuppressWarnings("unchecked")
 	public MyMatrix(int height, int width, Class<T> type) {	
-		tab = (T[][]) new Object[height][width];
+		tab = (T[][]) new Object[width][height];
 		this.height = height;
 		this.width = width;
 		
@@ -41,21 +41,21 @@ public class MyMatrix<T> {
 		
 		TC rand = new TC();
 		if(type == Float.class) {
-			for(int i = 0; i<height; i++)
-				for(int j = 0; j < width; j++) {
+			for(int i = 0; i<width; i++)
+				for(int j = 0; j < height; j++) {
 					Object o = ((float) rand.nextInt(zakres*2) - zakres)/zakres;
 					tab[i][j] = (T) o;
 				}
 			
 		}else if(type == Double.class){
-			for(int i = 0; i<height; i++)
-				for(int j = 0; j < width; j++) {
+			for(int i = 0; i<width; i++)
+				for(int j = 0; j < height; j++) {
 					Object o = ((double) rand.nextInt(zakres*2) - zakres)/zakres;
 					tab[i][j] = (T) o;
 				}
 		}else if(type == TC.class){
-			for(int i = 0; i<height; i++)
-				for(int j = 0; j < width; j++) {
+			for(int i = 0; i<width; i++)
+				for(int j = 0; j < height; j++) {
 					Object o = rand.nextTC();
 					tab[i][j] = (T) o;
 				}
@@ -67,9 +67,9 @@ public class MyMatrix<T> {
 
 	
 	public void test() {	
-		for(int i = 0; i<height; i++) {
+		for(int i = 0; i<width; i++) {
 				System.out.println("\n");
-			for(int j = 0; j < width; j++) {
+			for(int j = 0; j < height; j++) {
 				
 				System.out.print(tab[i][j].toString() + " ");
 			}
