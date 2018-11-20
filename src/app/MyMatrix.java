@@ -154,7 +154,7 @@ public class MyMatrix<T> {
 		tab[height2][width2] = temp;
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked"})
 	public T[][] multiplyMatrix(T matrix[][],T vector[][], int lenght)
 	{
 		T solution[][] = (T[][]) new Object[lenght][1];
