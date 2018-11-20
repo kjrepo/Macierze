@@ -227,7 +227,7 @@ public class MyMatrix<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void GaussFull(T matrix[][],T vector[][], int lenght)
+	public void GaussNoChoice(T matrix[][],T vector[][], int lenght)
 	{
 		T solution[][] = (T[][]) new Object[lenght][1];
 		int counter, counter2, counter3;
