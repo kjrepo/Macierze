@@ -155,19 +155,18 @@ public class MyMatrix<T> {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public MyMatrix multiplyMatrix(T matrix[][],T vector[][], int lenght)
+	public T[][] multiplyMatrix(T matrix[][],T vector[][], int lenght)
 	{
-		@SuppressWarnings("rawtypes")
-		MyMatrix solution[][] =  new MyMatrix[lenght][1];
+		T solution[][] = (T[][]) new Object[lenght][1];
 		for(int counter = 0; counter < lenght; counter++) {
             for (int counter2 = 0; counter2 < 1; counter2++) {
                 for (int counter3 = 0; counter3 < lenght; counter3++) {
-                	solution.getPartitionOfMatrix(counter,counter2) = add(solution.getPartitionOfMatrix(counter,counter2) ,(mul(matrix.getPartitionOfMatrix(counter,counter3) , vector.getPartitionOfMatrix(counter3,counter2))));
+                	solution[counter][counter2] = add(solution[counter][counter2] ,(mul(matrix[counter][counter3] , vector[counter3][counter2])));
                 }
             }
        }
 
-		return solution[][];
+		return solution;
 	}
 	
 }
