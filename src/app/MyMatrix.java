@@ -154,18 +154,20 @@ public class MyMatrix<T> {
 		tab[height2][width2] = temp;
 	}
 	
-	public T multiplyMatrix(T matrix[][], Vector vector, int lenght)
+	@SuppressWarnings("unchecked")
+	public T multiplyMatrix(T matrix[][],T vector[][], int lenght)
 	{
-		T solution[][];
+		@SuppressWarnings("rawtypes")
+		T solution = (T) new MyMatrix(lenght, 1, type);
 		for(int counter = 0; counter < lenght; counter++) {
             for (int counter2 = 0; counter2 < 1; counter2++) {
                 for (int counter3 = 0; counter3 < lenght; counter3++) {
-                   solution[counter][counter2] = add(solution[counter][counter2] ,(mul(matrix[counter][counter3] , vector[counter3][counter2])));
+                	solution.getPartitionOfMatrix(counter,counter2) = add(solution.getPartitionOfMatrix(counter,counter2) ,(mul(matrix.getPartitionOfMatrix(counter,counter3) , vector.getPartitionOfMatrix(counter3,counter2))));
                 }
             }
        }
 
-		return solution[][];
+		return solution;
 	}
 	
 }
