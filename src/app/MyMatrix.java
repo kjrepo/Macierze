@@ -1,5 +1,7 @@
 package app;
 
+//TODO compareTo(T,double){return 1 or return 0}
+//TODO opposite(T){return-T}
 
 public class MyMatrix<T> {
 
@@ -174,8 +176,8 @@ public class MyMatrix<T> {
 	{
 		T solution[][] = (T[][]) new Object[lenght][1];
 		int counter, counter2, counter3;
-		double multiplier;
-		double sum;
+		T multiplier;
+		T sum;
 		double epsilon = Math.pow(10, -13);
 		boolean isSolution = false;
 		for(counter = 1 ; counter < lenght ; counter++)
@@ -196,11 +198,11 @@ public class MyMatrix<T> {
 			sum = matrix[counter][lenght+1];
 			for(counter2 = lenght ; counter2 == counter + 1 ; counter--)
 			{
-				sum = sum - (matrix[counter][counter2] * vector[counter2]);
+				sum = sub(sum , mul(matrix[counter][counter2], vector[counter2][1]));
 			}
 			if(abs(matrix[counter][counter]) < epsilon)
 				break;
-			vector[counter] = div(sum,matrix[counter][counter]);
+			vector[counter][1] = div(sum,matrix[counter][counter]);
 			isSolution = true;
 		}
 	}
