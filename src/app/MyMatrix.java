@@ -169,5 +169,42 @@ public class MyMatrix<T> {
 		return solution;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void GaussFull(T matrix[][],T vector[][], int lenght)
+	{
+		T solution[][] = (T[][]) new Object[lenght][1];
+		int counter, counter2, counter3;
+		double multiplier;
+		double sum;
+		double epsilon = Math.pow(10, -13);
+		boolean isSolution = false;
+		for(counter = 1 ; counter < lenght ; counter++)
+		{
+			for(counter2 = counter + 1 ; counter2 == lenght ; counter2++)
+			{
+				if(abs(matrix[counter][counter2]) < epsilon)
+					break;
+				multiplier = - (div(matrix[counter2][counter]),(matrix[counter][counter2])));
+				for(counter3 = counter + 1 ; counter3 == lenght + 1 ; counter3++)
+				{
+					matrix[counter2][counter3] = add(matrix[counter2][counter3] , (mul(multiplier , matrix[counter][counter3])));
+				}
+			}
+		}
+		for(counter = lenght ; counter == 1 ; counter--)
+		{
+			sum = matrix[counter][lenght+1];
+			for(counter2 = lenght ; counter2 == counter + 1 ; counter--)
+			{
+				sum = sum - (matrix[counter][counter2] * vector[counter2]);
+			}
+			if(abs(matrix[counter][counter]) < epsilon)
+				break;
+			vector[counter] = div(sum,matrix[counter][counter]);
+			isSolution = true;
+		}
+	}
+	
+	
 }
 	
