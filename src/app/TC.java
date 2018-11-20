@@ -10,7 +10,14 @@ public class TC extends Random{ // Czy dziedziczenie po Random jest ok? Jest nie
 	
 	public BigInteger top;
 	public BigInteger bot;
+	public double aprox;
 
+	public TC(BigInteger top, BigInteger bot, double aprox) {
+	super();
+	this.top = top;
+	this.bot = bot;
+	this.aprox = aprox;
+}
 	
 	public TC(BigInteger top, BigInteger bot) {
 		super();
@@ -20,14 +27,26 @@ public class TC extends Random{ // Czy dziedziczenie po Random jest ok? Jest nie
 
 	public TC() {
 	}
+	
+	
+	public static double getTop (TC number) {
+		
+		return number.aprox;
+	}
+	
+//	public void aprox(TC number) {
+//		this.aprox = number.top.doubleValue() / number.bot.doubleValue();
+//	}
+	
+	
 
 	public TC nextTC() {
 		Random rnd; 
 //		BigInteger RangeBot;
-		BigInteger RangeTop;
+//		BigInteger RangeTop;
 //		
 		rnd = new Random();
-		RangeTop=BigInteger.valueOf(2);
+//		RangeTop=BigInteger.valueOf(2);
 		
 		int aaa = rnd.nextInt(55); /// losuje ile bitow ma mianownik
 //	RangeTop= RangeTop.pow(rnd.nextInt(63)+1); /// losuje jaka wartosc odejme od wylosowanej liczby (aby powstaly l ujemne)
@@ -53,9 +72,10 @@ public class TC extends Random{ // Czy dziedziczenie po Random jest ok? Jest nie
 		BigInteger nwd = nwd(bot,top);
 		top = top.divide(nwd);
 		bot = bot.divide(nwd);
+		this.aprox = top.doubleValue() / bot.doubleValue();
 		
 		
-		TC answ = new TC(top, bot);
+		TC answ = new TC(top, bot, aprox);
 		return answ;
 //	
 		

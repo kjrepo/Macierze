@@ -156,6 +156,61 @@ public class MyMatrix<T> {
 		tab[height2][width2] = temp;
 	}
 	
+	public int cmp(T one, double two) {
+		if(type == TC.class) {
+			TC val = (TC) one;
+			if(val.aprox > two) {
+				return 1;
+			}else if(val.aprox < two) {
+				return -1;
+			}else {
+				return 0;
+			}
+		
+
+		}else if(type == Double.class || type == Float.class){
+			
+			double val = (double) one;
+			if(val > two) {
+				return 1;
+			}else if(val < two) {
+				return -1;
+			}else {
+				return 0;
+			}
+		}else {
+			return 0;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public T neg(T one) {
+		
+		
+		if(type == Float.class) {
+			return (T) (Object) ((float) (one) * -1);
+		}else if(type == Double.class) {
+			return (T) (Object) ((double) (one) * -1);
+
+		}else if(type == TC.class) {
+			TC val = (TC) one;
+			val.top.negate();
+			return (T) val;
+		}
+		
+		
+		
+		
+		
+		return null;
+		
+	}
+	
+	
+	
+	
+	
+	
 	@SuppressWarnings({ "unchecked"})
 	public T[][] multiplyMatrix(T matrix[][],T vector[][], int lenght)
 	{
