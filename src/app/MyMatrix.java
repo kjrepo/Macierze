@@ -206,7 +206,39 @@ public class MyMatrix<T> {
 		
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	public T biggestInRow(int rowNumber) {
+		if(type == Float.class) {
+			T biggest = tab[rowNumber][0];
+			for(int i = 1; i < height; i++) {
+				if((float)tab[rowNumber][i] > (float)biggest) {
+					biggest = tab[rowNumber][i];
+				}
+				
+			}
+			return biggest;
+		}else if(type == Double.class) {
+			T biggest = tab[rowNumber][0];
+			for(int i = 1; i < height; i++) {
+				if((double)tab[rowNumber][i] > (double)biggest) {
+					biggest = tab[rowNumber][i];
+				}
+			}
+			return biggest;
+
+		}else if(type == TC.class) {
+			TC biggest = (TC) tab[rowNumber][0];
+			for(int i = 1; i < height; i++) {
+				TC current = (TC) tab[rowNumber][i];
+				
+				if(current.aprox > biggest.aprox) {
+					biggest = (TC) tab[rowNumber][i];
+				}
+			}
+			return (T) biggest;
+		}
+		return null;
+	}
 	
 	
 	
