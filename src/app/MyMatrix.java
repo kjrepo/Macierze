@@ -154,11 +154,11 @@ public class MyMatrix<T> {
 		tab[height2][width2] = temp;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public T multiplyMatrix(T matrix[][],T vector[][], int lenght)
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public MyMatrix multiplyMatrix(T matrix[][],T vector[][], int lenght)
 	{
 		@SuppressWarnings("rawtypes")
-		T solution = (T) new MyMatrix(lenght, 1, type);
+		MyMatrix solution[][] =  new MyMatrix[lenght][1];
 		for(int counter = 0; counter < lenght; counter++) {
             for (int counter2 = 0; counter2 < 1; counter2++) {
                 for (int counter3 = 0; counter3 < lenght; counter3++) {
@@ -167,7 +167,7 @@ public class MyMatrix<T> {
             }
        }
 
-		return solution;
+		return solution[][];
 	}
 	
 }
