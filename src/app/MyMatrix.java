@@ -258,42 +258,116 @@ public class MyMatrix<T> {
 		return solution;
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	public void GaussNoChoice(T matrix[][],T vector[][], int lenght)
 	{
-		T solution[][] = (T[][]) new Object[lenght][1];
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
 		double epsilon = Math.pow(10, -13);
 		boolean isSolution = false;
-		for(counter = 1 ; counter < lenght ; counter++)
+		for(counter = 0 ; counter <= lenght - 2 ; counter++)
 		{
-			for(counter2 = counter + 1 ; counter2 == lenght ; counter2++)
+			for(counter2 = counter + 1 ; counter2 <= lenght - 1 ; counter2++)
 			{
-				if(abs(matrix[counter][counter2]) < epsilon)
+				if(cmp(abs(matrix[counter][counter2]) , epsilon) == -1)
 					break;
-				multiplier = - (div(matrix[counter2][counter]),(matrix[counter][counter2])));
-				for(counter3 = counter + 1 ; counter3 == lenght + 1 ; counter3++)
+				multiplier = neg(div((matrix[counter2][counter]),(matrix[counter][counter2])));
+				for(counter3 = counter + 1 ; counter3 <= lenght; counter3++)
 				{
 					matrix[counter2][counter3] = add(matrix[counter2][counter3] , (mul(multiplier , matrix[counter][counter3])));
 				}
 			}
 		}
-		for(counter = lenght ; counter == 1 ; counter--)
+		for(counter = lenght - 1 ; counter >= 0; counter--)
 		{
 			sum = matrix[counter][lenght+1];
-			for(counter2 = lenght ; counter2 == counter + 1 ; counter--)
+			for(counter2 = lenght - 1 ; counter2 >= counter + 1 ; counter--)
 			{
 				sum = sub(sum , mul(matrix[counter][counter2], vector[counter2][1]));
 			}
-			if(abs(matrix[counter][counter]) < epsilon)
+			if(cmp(abs(matrix[counter][counter]) , epsilon) == -1)
 				break;
 			vector[counter][1] = div(sum,matrix[counter][counter]);
 			isSolution = true;
 		}
 	}
 	
+	public void GaussHalfChoice(T matrix[][],T vector[][], int lenght)
+	{
+		int counter, counter2, counter3;
+		T multiplier;
+		T sum;
+		double epsilon = Math.pow(10, -13);
+		boolean isSolution = false;
+		int biggestInRow;
+		for(counter = 0 ; counter <= lenght - 2 ; counter++)
+		{
+
+			for(counter2 = counter + 1 ; counter2 <= lenght - 1 ; counter2++)
+			{
+				if(cmp(abs(matrix[counter][counter2]) , epsilon) == -1)
+					break;
+				biggestInRow=biggestInRow(counter);	
+				swapRowes(biggestInRow, counter2);
+				multiplier = neg(div((matrix[counter2][counter]),(matrix[counter][counter2])));
+				for(counter3 = counter + 1 ; counter3 <= lenght; counter3++)
+				{
+					matrix[counter2][counter3] = add(matrix[counter2][counter3] , (mul(multiplier , matrix[counter][counter3])));
+				}
+			}
+		}
+		for(counter = lenght - 1 ; counter >= 0; counter--)
+		{
+			sum = matrix[counter][lenght+1];
+			for(counter2 = lenght - 1 ; counter2 >= counter + 1 ; counter--)
+			{
+				sum = sub(sum , mul(matrix[counter][counter2], vector[counter2][1]));
+			}
+			if(cmp(abs(matrix[counter][counter]) , epsilon) == -1)
+				break;
+			vector[counter][1] = div(sum,matrix[counter][counter]);
+			isSolution = true;
+		}
+	}
+	public void GaussFullChoice(T matrix[][],T vector[][], int lenght)
+	{
+		int counter, counter2, counter3;
+		T multiplier;
+		T sum;
+		double epsilon = Math.pow(10, -13);
+		boolean isSolution = false;
+		int biggestInRowColumn[];
+		for(counter = 0 ; counter <= lenght - 2 ; counter++)
+		{
+
+			for(counter2 = counter + 1 ; counter2 <= lenght - 1 ; counter2++)
+			{
+				if(cmp(abs(matrix[counter][counter2]) , epsilon) == -1)
+					break;
+				biggestInRowColumn[]=biggestInRowColumn(counter);	
+				swapRowes(biggestInRowColumn[0], counter2);
+				swapColumns(biggestInRowColumn[1], counter);
+				multiplier = neg(div((matrix[counter2][counter]),(matrix[counter][counter2])));
+				for(counter3 = counter + 1 ; counter3 <= lenght; counter3++)
+				{
+					matrix[counter2][counter3] = add(matrix[counter2][counter3] , (mul(multiplier , matrix[counter][counter3])));
+				}
+			}
+		}
+		for(counter = lenght - 1 ; counter >= 0; counter--)
+		{
+			sum = matrix[counter][lenght+1];
+			for(counter2 = lenght - 1 ; counter2 >= counter + 1 ; counter--)
+			{
+				sum = sub(sum , mul(matrix[counter][counter2], vector[counter2][1]));
+			}
+			if(cmp(abs(matrix[counter][counter]) , epsilon) == -1)
+				break;
+			vector[counter][1] = div(sum,matrix[counter][counter]);
+			isSolution = true;
+		}
+	}
 	
 }
 	
