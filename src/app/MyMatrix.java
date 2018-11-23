@@ -207,6 +207,44 @@ public class MyMatrix<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public int biggestInRowInt(int rowNumber) {
+		int ret = 0;
+		if(type == Float.class) {
+			T biggest = tab[rowNumber][0];
+			for(int i = 1; i < height; i++) {
+				if((float)tab[rowNumber][i] > (float)biggest) {
+					biggest = tab[rowNumber][i];
+					ret = i;
+				}
+				
+			}
+			return ret;
+		}else if(type == Double.class) {
+			T biggest = tab[rowNumber][0];
+			for(int i = 1; i < height; i++) {
+				if((double)tab[rowNumber][i] > (double)biggest) {
+					biggest = tab[rowNumber][i];
+					ret = i;
+				}
+			}
+			return ret;
+
+		}else if(type == TC.class) {
+			TC biggest = (TC) tab[rowNumber][0];
+			for(int i = 1; i < height; i++) {
+				TC current = (TC) tab[rowNumber][i];
+				
+				if(current.aprox > biggest.aprox) {
+					biggest = (TC) tab[rowNumber][i];
+					ret = i;
+				}
+			}
+			return ret;
+		}
+		return 0;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public T biggestInRow(int rowNumber) {
 		if(type == Float.class) {
 			T biggest = tab[rowNumber][0];
@@ -239,6 +277,28 @@ public class MyMatrix<T> {
 		}
 		return null;
 	}
+	
+	public void swapRow(int row1, int row2) {
+		T[][] temp = (T[][]) new Object[width][1];
+		for(int i = 0; i <width; i++) {
+			temp[i][1] = tab[i][row1];
+			tab[i][row1] = tab[i][row2];
+			tab[i][row2] = temp[i][1];
+		}
+		
+	}
+	
+	public void swapColumn(int col1, int col2) {
+		T[][] temp = (T[][]) new Object[width][1];
+		for(int i = 0; i <width; i++) {
+			temp[1][i] = tab[col1][i];
+			tab[col1][i] = tab[col2][i];
+			tab[col2][i] = temp[1][i];
+		}
+		
+	}
+	
+	
 	
 	
 	
