@@ -245,24 +245,27 @@ public class MyMatrix<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public T biggestInRow(int rowNumber) {
+	public int biggestInRow(int rowNumber) {
+		int res=0;
 		if(type == Float.class) {
 			T biggest = tab[rowNumber][0];
 			for(int i = 1; i < height; i++) {
 				if((float)tab[rowNumber][i] > (float)biggest) {
 					biggest = tab[rowNumber][i];
+					res=i;
 				}
 				
 			}
-			return biggest;
+			return res;
 		}else if(type == Double.class) {
 			T biggest = tab[rowNumber][0];
 			for(int i = 1; i < height; i++) {
 				if((double)tab[rowNumber][i] > (double)biggest) {
 					biggest = tab[rowNumber][i];
+					res=i;
 				}
 			}
-			return biggest;
+			return res;
 
 		}else if(type == TC.class) {
 			TC biggest = (TC) tab[rowNumber][0];
@@ -271,14 +274,15 @@ public class MyMatrix<T> {
 				
 				if(current.aprox > biggest.aprox) {
 					biggest = (TC) tab[rowNumber][i];
+					res=i;
 				}
 			}
-			return (T) biggest;
+			return res;
 		}
-		return null;
+		return 0;
 	}
 	
-	public void swapRow(int row1, int row2) {
+	public void swapRowes(int row1, int row2) {
 		T[][] temp = (T[][]) new Object[width][1];
 		for(int i = 0; i <width; i++) {
 			temp[i][1] = tab[i][row1];
@@ -288,7 +292,7 @@ public class MyMatrix<T> {
 		
 	}
 	
-	public void swapColumn(int col1, int col2) {
+	public void swapColumns(int col1, int col2) {
 		T[][] temp = (T[][]) new Object[width][1];
 		for(int i = 0; i <width; i++) {
 			temp[1][i] = tab[col1][i];
@@ -299,7 +303,7 @@ public class MyMatrix<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public int[] biggestL(int rowNumber) {
+	public int[] biggestInRowColumn(int rowNumber) {
 		int[] res = new int[1];
 		if(type == Float.class) {
 			T biggest = tab[rowNumber][rowNumber];
@@ -456,6 +460,7 @@ public class MyMatrix<T> {
 			isSolution = true;
 		}
 	}
+	
 	public void GaussFullChoice(T matrix[][],T vector[][], int lenght)
 	{
 		int counter, counter2, counter3;
