@@ -9,7 +9,8 @@ public class MyMatrix<T> {
 	private int width; 
 	
 	//// nowy poczatek
-	private T[][] tab;
+	public T[][] tab;
+	public T[][] vector; 
 	private final Class<T> type;
 	final int zakres= 65536;
 	
@@ -21,6 +22,7 @@ public class MyMatrix<T> {
 	@SuppressWarnings("unchecked")
 	public MyMatrix(int height, int width, Class<T> type) {	
 		tab = (T[][]) new Object[width][height];
+		vector = (T[][]) new Object[width][1];
 		this.height = height;
 		this.width = width;
 		
@@ -60,6 +62,33 @@ public class MyMatrix<T> {
 				for(int j = 0; j < height; j++) {
 					Object o = rand.nextTC();
 					tab[i][j] = (T) o;
+				}
+		}
+		
+	}
+	
+	public void popVector() {
+		
+		
+		TC rand = new TC();
+		if(type == Float.class) {
+			for(int i = 0; i<width; i++) {
+				
+					Object o = ((float) rand.nextInt(zakres*2) - zakres)/zakres;
+					vector[i][0] = (T) o;
+			}
+			
+		}else if(type == Double.class){
+			for(int i = 0; i<width; i++)
+				 {
+					Object o = ((double) rand.nextInt(zakres*2) - zakres)/zakres;
+					vector[i][0] = (T) o;
+				}
+		}else if(type == TC.class){
+			for(int i = 0; i<width; i++)
+				 {
+					Object o = rand.nextTC();
+					vector[i][0] = (T) o;
 				}
 		}
 		

@@ -16,6 +16,10 @@ public class Main {
 		
 		MyMatrix<Float> test = new MyMatrix<>(100, 100, Float.class);
 		test.pop();
+		test.popVector();
+//		System.out.println(test.abs(Float.valueOf("-2")));
+//		System.out.println(test.add(Float.valueOf("-2"),Float.valueOf("-4")));
+		test.GaussNoChoice(test.tab, test.vector, 100);
 		test.test();
 		
 		
