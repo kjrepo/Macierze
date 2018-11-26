@@ -476,7 +476,7 @@ public class MyMatrix<T> {
 			{
 				if(cmp(abs(matrix[counter][counter2]) , epsilon) == -1)
 					break;
-				biggestInRowColumn[]=biggestInRowColumn(counter);	
+				biggestInRowColumn=biggestInRowColumn(counter);	
 				swapRowes(biggestInRowColumn[0], counter2);
 				swapColumns(biggestInRowColumn[1], counter);
 				multiplier = neg(div((matrix[counter2][counter]),(matrix[counter][counter2])));
