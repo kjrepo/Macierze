@@ -298,6 +298,72 @@ public class MyMatrix<T> {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
+	public int[] biggestL(int rowNumber) {
+		int[] res = new int[1];
+		if(type == Float.class) {
+			T biggest = tab[rowNumber][rowNumber];
+			for(int i = rowNumber; i < height; i++) {
+				if((float)tab[rowNumber][i] > (float)biggest) {
+					biggest = tab[rowNumber][i];
+					res[0] = rowNumber;
+					res[1] = i;
+					}
+			}
+			for(int i = rowNumber; i< height; i++) {
+				if((float)tab[i][rowNumber] > (float)biggest) {
+					biggest = tab[i][rowNumber];
+					res[0] = i;
+					res[1] = rowNumber;
+					}
+				}
+				
+			
+			return res;
+		}else if(type == Double.class) {
+			T biggest = tab[rowNumber][rowNumber];
+			for(int i = rowNumber; i < height; i++) {
+				if((double)tab[rowNumber][i] > (double)biggest) {
+					biggest = tab[rowNumber][i];
+					res[0] = rowNumber;
+					res[1] = i;
+					}
+			}
+			for(int i = rowNumber; i< height; i++) {
+				if((double)tab[i][rowNumber] > (double)biggest) {
+					biggest = tab[i][rowNumber];
+					res[0] = i;
+					res[1] = rowNumber;
+					}
+			}
+			return res;
+
+		}else if(type == TC.class) {
+			TC biggest = (TC) tab[rowNumber][0];
+			for(int i = rowNumber; i < height; i++) {
+				TC current = (TC) tab[rowNumber][i];
+				
+				if(current.aprox > biggest.aprox) {
+					biggest = (TC) tab[rowNumber][i];
+					res[0] = rowNumber;
+					res[1] = i;
+				}
+			}
+			
+			for(int i = rowNumber; i < height; i++) {
+				TC current = (TC) tab[i][rowNumber];
+				
+				if(current.aprox > biggest.aprox) {
+					biggest = (TC) tab[rowNumber][i];
+					res[0] = rowNumber;
+					res[1] = i;
+				}
+			}
+			return res;
+		}
+		return null;
+	}
+	
 	
 	
 	
