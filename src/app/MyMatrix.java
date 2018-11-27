@@ -13,6 +13,7 @@ public class MyMatrix<T> {
 	public T[][] vector; 
 	private final Class<T> type;
 	final int zakres= 65536;
+
 	
 	/////
 
@@ -96,7 +97,6 @@ public class MyMatrix<T> {
 	
 		
 
-	
 	public void test() {	
 		for(int i = 0; i<width; i++) {
 				System.out.println("\n");
@@ -197,9 +197,9 @@ public class MyMatrix<T> {
 			}
 		
 
-		}else if(type == Double.class || type == Float.class){
+		}else if(type == Double.class){
 			
-			double val = (double) one;
+			double val = (double)  one;
 			if(val > two) {
 				return 1;
 			}else if(val < two) {
@@ -207,9 +207,18 @@ public class MyMatrix<T> {
 			}else {
 				return 0;
 			}
-		}else {
-			return 0;
-		}
+		}else if( type == Float.class) {
+			float val = (float)  one;
+			if(val > two) {
+				return 1;
+			}else if(val < two) {
+				return -1;
+			}else {
+				return 0;
+			}
+			
+		} 
+		return 0;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -314,26 +323,26 @@ public class MyMatrix<T> {
 	public void swapRowes(int row1, int row2) {
 		T[][] temp = (T[][]) new Object[width][1];
 		for(int i = 0; i <width; i++) {
-			temp[i][1] = tab[i][row1];
+			temp[i][0] = tab[i][row1];
 			tab[i][row1] = tab[i][row2];
-			tab[i][row2] = temp[i][1];
+			tab[i][row2] = temp[i][0];
 		}
 		
 	}
 	
 	public void swapColumns(int col1, int col2) {
-		T[][] temp = (T[][]) new Object[width][1];
+		T[][] temp = (T[][]) new Object[1][width];
 		for(int i = 0; i <width; i++) {
-			temp[1][i] = tab[col1][i];
+			temp[0][i] = tab[col1][i];
 			tab[col1][i] = tab[col2][i];
-			tab[col2][i] = temp[1][i];
+			tab[col2][i] = temp[0][i];
 		}
 		
 	}
 	
 	@SuppressWarnings("unchecked")
 	public int[] biggestInRowColumn(int rowNumber) {
-		int[] res = new int[1];
+		int[] res = new int[2];
 		if(type == Float.class) {
 			T biggest = tab[rowNumber][rowNumber];
 			for(int i = rowNumber; i < height; i++) {
@@ -402,10 +411,15 @@ public class MyMatrix<T> {
 	
 	
 	
-	@SuppressWarnings({ "unchecked"})
-	public T[][] multiplyMatrix(T matrix[][],T vector[][], int lenght)
+	
+	public T[][] multiplyMatrix(T matrix[][],T vector[][], int lenght) // <- potrzebne?
 	{
+		@SuppressWarnings("unchecked")
 		T solution[][] = (T[][]) new Object[lenght][1];
+		for(int i = 0; i < width; i++) {
+			solution[i][0] = (T) Float.valueOf(0);
+		}
+		
 		for(int counter = 0; counter < lenght; counter++) {
             for (int counter2 = 0; counter2 < 1; counter2++) {
                 for (int counter3 = 0; counter3 < lenght; counter3++) {
@@ -417,6 +431,61 @@ public class MyMatrix<T> {
 		return solution;
 	}
 	
+//	@SuppressWarnings("unchecked")
+//	public T[][] multiplyMatrixTEST()
+//	{
+//		@SuppressWarnings("unchecked")
+//		T solution[][] = (T[][]) new Object[width][1];
+//		for(int i = 0; i < width; i++) {
+//			solution[i][0] = (T) Float.valueOf(0);
+//		}
+//		
+//		
+//		for(int counter = 0; counter < width; counter++) {
+//            for (int counter2 = 0; counter2 < 1; counter2++) {
+//                for (int counter3 = 0; counter3 < width; counter3++) {
+//                	solution[counter][counter2] = add(solution[counter][counter2] ,(mul(tab[counter][counter3] , vector[counter3][counter2])));
+//                }
+//            }
+//       }
+//
+//		return solution;
+//	}
+	
+	
+//	public void GaussNoChoiceTEST() <- To dzia³a (w miare)
+//	{
+//		int counter, counter2, counter3;
+//		T multiplier;
+//		T sum;
+//		double epsilon = Math.pow(10, -13);
+//		boolean isSolution = false;
+//		for(counter = 0 ; counter <= width - 2 ; counter++)
+//		{
+//			for(counter2 = counter + 1 ; counter2 <= width - 1 ; counter2++)
+//			{
+//				if(cmp(abs(tab[counter][counter2]) , epsilon) == -1)
+//					break;
+//				multiplier = neg(div((tab[counter2][counter]),(tab[counter][counter2])));
+//				for(counter3 = counter + 1 ; counter3 <= width; counter3++)
+//				{
+//					tab[counter2][counter3] = add(tab[counter2][counter3] , (mul(multiplier , tab[counter][counter3])));
+//				}
+//			}
+//		}
+//		for(counter = width - 1 ; counter > 0; counter--)
+//		{
+//			sum = tab[counter][width];
+//			for(counter2 = width - 1 ; counter2 > counter +1  ; counter2--)
+//			{
+//				sum = sub(sum , mul(tab[counter][counter2], vector[counter2][0]));
+//			}
+//			if(cmp(abs(tab[counter][counter]) , epsilon) == -1)
+//				break;
+//			vector[counter][0] = div(sum,tab[counter][counter]);
+//			isSolution = true;
+//		}
+//	}
 
 	public void GaussNoChoice(T matrix[][],T vector[][], int lenght)
 	{

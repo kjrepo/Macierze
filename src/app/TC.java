@@ -85,7 +85,7 @@ public class TC extends Random{ // Czy dziedziczenie po Random jest ok? Jest nie
 		}
 	
 	public String toString() {
-		return top.toString() + " / " + bot.toString();
+		return String.valueOf(aprox);
 	}
 	
 	static public TC add(TC one, TC two) {

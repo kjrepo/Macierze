@@ -14,12 +14,21 @@ public class Main {
 
 		System.out.println("");
 		
-		MyMatrix<Float> test = new MyMatrix<>(100, 100, Float.class);
+		float a = 11; 
+		float b = 2;
+		double c = 3;
+		
+		
+//		MyMatrix<Double> DoubleTest = new MyMatrix<>(5, 5, Double.class);
+//		DoubleTest.pop();
+//		DoubleTest.popVector();
+//		DoubleTest.GaussFullChoice(DoubleTest.tab, DoubleTest.vector, 5);
+		
+		
+		MyMatrix<Float> test = new MyMatrix<>(5, 5, Float.class);
 		test.pop();
 		test.popVector();
-//		System.out.println(test.abs(Float.valueOf("-2")));
-//		System.out.println(test.add(Float.valueOf("-2"),Float.valueOf("-4")));
-		test.GaussNoChoice(test.tab, test.vector, 100);
+	//	test.GaussNoChoice(test.tab, test.vector, 5);
 		test.test();
 		
 		
@@ -30,6 +39,7 @@ public class Main {
 		MyMatrix<TC> testTC = new MyMatrix<>(6, 6, TC.class);
 		testTC.pop();
 		testTC.test();
+//		testTC.GaussFullChoice(testTC.tab, testTC.vector, 6);
 		
 		TC one = new TC(BigInteger.valueOf(1),BigInteger.valueOf(2));
 		TC two = new TC(BigInteger.valueOf(1),BigInteger.valueOf(4));
