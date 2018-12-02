@@ -26,28 +26,34 @@ public class Main {
 		
 		
 		MyMatrix<Float> test = new MyMatrix<>(5, 5, Float.class);
+		
+		
 		test.pop();
 		test.popVector();
-	//	test.GaussNoChoice(test.tab, test.vector, 5);
+		test.multiplyMatrix();
+		System.out.println("XD");
+		test.zeroVector();
+		test.GaussNoChoice();
 		test.test();
+		test.chceck();
 		
 		
-		System.out.println(test.add(Float.valueOf(2),Float.valueOf(2)));
-		
-		System.out.println("\n\n//////////////////////////////");
-		
-		MyMatrix<TC> testTC = new MyMatrix<>(6, 6, TC.class);
-		testTC.pop();
-		testTC.test();
-//		testTC.GaussFullChoice(testTC.tab, testTC.vector, 6);
-		
-		TC one = new TC(BigInteger.valueOf(1),BigInteger.valueOf(2));
-		TC two = new TC(BigInteger.valueOf(1),BigInteger.valueOf(4));
-		
-		System.out.println(testTC.add(one, two).toString());
-		System.out.println(testTC.sub(one, two).toString());
-		System.out.println(testTC.mul(one, two).toString());
-		System.out.println(testTC.div(one, two).toString());
+//		System.out.println(test.add(Float.valueOf(2),Float.valueOf(2)));
+//		
+//		System.out.println("\n\n//////////////////////////////");
+//		
+//		MyMatrix<TC> testTC = new MyMatrix<>(6, 6, TC.class);
+//		testTC.pop();
+//		testTC.test();
+////		testTC.GaussFullChoice(testTC.tab, testTC.vector, 6);
+//		
+//		TC one = new TC(BigInteger.valueOf(1),BigInteger.valueOf(2));
+//		TC two = new TC(BigInteger.valueOf(1),BigInteger.valueOf(4));
+//		
+//		System.out.println(testTC.add(one, two).toString());
+//		System.out.println(testTC.sub(one, two).toString());
+//		System.out.println(testTC.mul(one, two).toString());
+//		System.out.println(testTC.div(one, two).toString());
 
 //		MyMatrix<Double> doubleTest = new MyMatrix<Double>(6,6);
 //		doubleTest.populate(rand ->  Double.valueOf(rand.nextInt(131072) - Math.pow(2, 16))/Math.pow(2, 16));

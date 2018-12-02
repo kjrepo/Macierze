@@ -11,19 +11,39 @@ public class MyMatrix<T> {
 	//// nowy poczatek
 	public T[][] tab;
 	public T[][] vector; 
+	//public T[][] nullVector;
+	public T[][] wynik;
+	public T[][] temp;
+	public T[][] tempV;
+	
 	private final Class<T> type;
 	final int zakres= 65536;
 
 	
 	/////
 
-	
+	public void chceck() {
+		for(int i = 0; i < width; i++) {
+			for(int j = 0; j < width; j++) {
+				temp[j][i] = mul(temp[j][i], wynik[j][0]); 
+			}
+		}
+		
+		for(int i = 0; i < width; i++) {
+			for(int j = 0; j < width-1; j++) {
+				tempV[j][0] = add(temp[j][i], temp[j+1][i]);
+			}
+		}
+	}
 	
 	
 	@SuppressWarnings("unchecked")
 	public MyMatrix(int height, int width, Class<T> type) {	
 		tab = (T[][]) new Object[width][height];
+		temp = (T[][]) new Object[width][height];
+		tempV = (T[][]) new Object[width][1];
 		vector = (T[][]) new Object[width][1];
+		wynik = (T[][]) new Object[width][height+1];
 		this.height = height;
 		this.width = width;
 		
@@ -50,6 +70,7 @@ public class MyMatrix<T> {
 				for(int j = 0; j < height; j++) {
 					Object o = ((float) rand.nextInt(zakres*2) - zakres)/zakres;
 					tab[i][j] = (T) o;
+					temp[i][j] = (T) o;
 				}
 			
 		}else if(type == Double.class){
@@ -57,14 +78,17 @@ public class MyMatrix<T> {
 				for(int j = 0; j < height; j++) {
 					Object o = ((double) rand.nextInt(zakres*2) - zakres)/zakres;
 					tab[i][j] = (T) o;
+					temp[i][j] = (T) o;
 				}
 		}else if(type == TC.class){
 			for(int i = 0; i<width; i++)
 				for(int j = 0; j < height; j++) {
 					Object o = rand.nextTC();
 					tab[i][j] = (T) o;
+					temp[i][j] = (T) o;
 				}
 		}
+		
 		
 	}
 	
@@ -77,12 +101,45 @@ public class MyMatrix<T> {
 				
 					Object o = ((float) rand.nextInt(zakres*2) - zakres)/zakres;
 					vector[i][0] = (T) o;
+					tempV[i][0] = (T) o;
+
 			}
 			
 		}else if(type == Double.class){
 			for(int i = 0; i<width; i++)
 				 {
 					Object o = ((double) rand.nextInt(zakres*2) - zakres)/zakres;
+					vector[i][0] = (T) o;
+					tempV[i][0] = (T) o;
+
+				}
+		}else if(type == TC.class){
+			for(int i = 0; i<width; i++)
+				 {
+					Object o = rand.nextTC();
+					vector[i][0] = (T) o;
+					tempV[i][0] = (T) o;
+				}
+		}
+		
+		
+	}
+	
+	public void zeroVector() {
+		
+		
+		TC rand = new TC();
+		if(type == Float.class) {
+			for(int i = 0; i<width; i++) {
+				
+					Object o = (float) 0;
+					vector[i][0] = (T) o;
+			}
+			
+		}else if(type == Double.class){
+			for(int i = 0; i<width; i++)
+				 {
+					Object o = (double) 0;
 					vector[i][0] = (T) o;
 				}
 		}else if(type == TC.class){
@@ -412,23 +469,31 @@ public class MyMatrix<T> {
 	
 	
 	
-	public T[][] multiplyMatrix(T matrix[][],T vector[][], int lenght) // <- potrzebne?
+	public void multiplyMatrix() // <- potrzebne?
 	{
 		@SuppressWarnings("unchecked")
-		T solution[][] = (T[][]) new Object[lenght][1];
+		T solution[][] = (T[][]) new Object[width][1];
 		for(int i = 0; i < width; i++) {
 			solution[i][0] = (T) Float.valueOf(0);
 		}
 		
-		for(int counter = 0; counter < lenght; counter++) {
+		for(int counter = 0; counter < width; counter++) {
             for (int counter2 = 0; counter2 < 1; counter2++) {
-                for (int counter3 = 0; counter3 < lenght; counter3++) {
-                	solution[counter][counter2] = add(solution[counter][counter2] ,(mul(matrix[counter][counter3] , vector[counter3][counter2])));
+                for (int counter3 = 0; counter3 < width; counter3++) {
+                	solution[counter][counter2] = add(solution[counter][counter2] ,(mul(tab[counter][counter3] , vector[counter3][counter2])));
                 }
             }
        }
 
-		return solution;
+		for(int i = 0; i < width ; i++) {
+			for(int j = 0; j < width +1 ; j++) {
+				if(j < width) {
+				wynik[i][j] = tab[i][j];
+				}else {
+					wynik[i][j] = solution[i][0];
+				}
+			}
+		}
 	}
 	
 //	@SuppressWarnings("unchecked")
@@ -487,36 +552,36 @@ public class MyMatrix<T> {
 //		}
 //	}
 
-	public void GaussNoChoice(T matrix[][],T vector[][], int lenght)
+	public void GaussNoChoice()
 	{
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
 		double epsilon = Math.pow(10, -13);
 		boolean isSolution = false;
-		for(counter = 0 ; counter <= lenght - 2 ; counter++)
+		for(counter = 0 ; counter <= width - 2 ; counter++)
 		{
-			for(counter2 = counter + 1 ; counter2 <= lenght - 1 ; counter2++)
+			for(counter2 = counter + 1 ; counter2 <= width - 1 ; counter2++)
 			{
-				if(cmp(abs(matrix[counter][counter2]) , epsilon) == -1)
+				if(cmp(abs(wynik[counter][counter2]) , epsilon) == -1)
 					break;
-				multiplier = neg(div((matrix[counter2][counter]),(matrix[counter][counter2])));
-				for(counter3 = counter + 1 ; counter3 <= lenght; counter3++)
+				multiplier = neg(div((wynik[counter2][counter]),(wynik[counter][counter2])));
+				for(counter3 = counter + 1 ; counter3 <= width; counter3++)
 				{
-					matrix[counter2][counter3] = add(matrix[counter2][counter3] , (mul(multiplier , matrix[counter][counter3])));
+					wynik[counter2][counter3] = add(wynik[counter2][counter3] , (mul(multiplier , wynik[counter][counter3])));
 				}
 			}
 		}
-		for(counter = lenght - 1 ; counter >= 0; counter--)
+		for(counter = width - 1 ; counter >= 0; counter--)
 		{
-			sum = matrix[counter][lenght+1];
-			for(counter2 = lenght - 1 ; counter2 >= counter + 1 ; counter--)
+			sum = wynik[counter][width];
+			for(counter2 = width - 1 ; counter2 >= counter + 1 ; counter2--)
 			{
-				sum = sub(sum , mul(matrix[counter][counter2], vector[counter2][1]));
+				sum = sub(sum , mul(wynik[counter][counter2], vector[counter2][0]));
 			}
-			if(cmp(abs(matrix[counter][counter]) , epsilon) == -1)
+			if(cmp(abs(wynik[counter][counter]) , epsilon) == -1)
 				break;
-			vector[counter][1] = div(sum,matrix[counter][counter]);
+			vector[counter][0] = div(sum,wynik[counter][counter]);
 			isSolution = true;
 		}
 	}
