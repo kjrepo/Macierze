@@ -8,7 +8,7 @@ public class Main {
 		
 		MyMatrix<Float> testF = new MyMatrix<>(10, 10, Float.class);
 		MyMatrix<Double> testD = new MyMatrix<>(10, 10, Double.class);
-		MyMatrix<TC> testTC = new MyMatrix<>(30, 30, TC.class);
+		MyMatrix<TC> testTC = new MyMatrix<>(3, 3, TC.class);
 		
 		testF.pop();
 		testF.popVector();
@@ -34,8 +34,8 @@ public class Main {
 		testTC.GaussHalfChoice();
 		testTC.GaussFullChoice();
 		testTC.chceck();
-		testTC.chceckf();
-		testTC.chceckh();
+//		testTC.chceckf();
+//		testTC.chceckh();
 		
 	
 	}
