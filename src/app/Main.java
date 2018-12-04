@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		MyMatrix<Float> testF = new MyMatrix<>(10, 10, Float.class);
+		MyMatrix<Float> testF = new MyMatrix<>(3, 3, Float.class);
 		MyMatrix<Double> testD = new MyMatrix<>(10, 10, Double.class);
 		MyMatrix<TC> testTC = new MyMatrix<>(3, 3, TC.class);
 		
@@ -16,8 +16,8 @@ public class Main {
 		testF.GaussHalfChoice();
 		testF.GaussFullChoice();
 		testF.chceck();
-		testF.chceckf();
 		testF.chceckh();
+		testF.chceckf();
 
 		testD.pop();
 		testD.popVector();
@@ -25,8 +25,8 @@ public class Main {
 		testD.GaussHalfChoice();
 		testD.GaussFullChoice();
 		testD.chceck();
-		testD.chceckf();
 		testD.chceckh();
+		testD.chceckf();
 		
 		testTC.pop();
 		testTC.popVector();
@@ -34,8 +34,8 @@ public class Main {
 		testTC.GaussHalfChoice();
 		testTC.GaussFullChoice();
 		testTC.chceck();
-//		testTC.chceckf();
 //		testTC.chceckh();
+//		testTC.chceckf();
 		
 	
 	}

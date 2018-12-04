@@ -527,7 +527,7 @@ public class MyMatrix<T> {
 		return 0;
 	}
 	
-	public void swapRowesH(int row1, int row2) {
+	public void swapColumnsH(int row1, int row2) {
 		T[][] temp = (T[][]) new Object[width][1];
 		for(int i = 0; i <width; i++) {
 			temp[i][0] = wynikH[i][row1];
@@ -537,9 +537,9 @@ public class MyMatrix<T> {
 		
 	}
 	
-	public void swapColumnsH(int col1, int col2) {
-		T[][] temp = (T[][]) new Object[1][width];
-		for(int i = 0; i <width; i++) {
+	public void swapRowesH(int col1, int col2) {
+		T[][] temp = (T[][]) new Object[1][width+1];
+		for(int i = 0; i <width+1; i++) {
 			temp[0][i] = wynikH[col1][i];
 			wynikH[col1][i] = wynikH[col2][i];
 			wynikH[col2][i] = temp[0][i];
@@ -689,31 +689,75 @@ public class MyMatrix<T> {
 		return 0;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public int biggestInColumnH(int rowNumber) {
+		int res=0;
+		if(type == Float.class) {
+			T biggest = wynikH[0][rowNumber];
+			for(int i = 1; i < height; i++) {
+				if((float)wynikH[i][rowNumber] > (float)biggest) {
+					biggest = wynikH[i][rowNumber];
+					res=i;
+				}
+				
+			}
+			return res;
+		}else if(type == Double.class) {
+			T biggest = wynikH[0][rowNumber];
+			for(int i = 1; i < height; i++) {
+				if((double)wynikH[i][rowNumber] > (double)biggest) {
+					biggest = wynikH[i][rowNumber];
+					res=i;
+				}
+			}
+			return res;
+
+		}else if(type == TC.class) {
+			TC biggest = (TC) wynikH[0][rowNumber];
+			for(int i = 1; i < height; i++) {
+				TC current = (TC) wynikH[i][rowNumber];
+				
+				if(current.aprox > biggest.aprox) {
+					biggest = (TC) wynikH[i][rowNumber];
+					res=i;
+				}
+			}
+			return res;
+		}
+		return 0;
+	}
+	
 	public void swapRowes(int row1, int row2) {
-		T[][] temp = (T[][]) new Object[width][1];
-		for(int i = 0; i <width; i++) {
-			temp[i][0] = wynikF[i][row1];
-			wynikF[i][row1] = wynikF[i][row2];
-			wynikF[i][row2] = temp[i][0];
+		T[][] temp = (T[][]) new Object[1][width+1];
+		for(int i = 0; i <width+1; i++) {
+			temp[0][i] = wynikF[row1][i];
+			wynikF[row1][i] = wynikF[row2][i];
+			wynikF[row2][i] = temp[0][i];
 		}
 		
 	}
 	
 	public void swapColumns(int col1, int col2) {
-		T[][] temp = (T[][]) new Object[1][width];
+		T[][] temp = (T[][]) new Object[width][1];
 		for(int i = 0; i <width; i++) {
-			temp[0][i] = wynikF[col1][i];
-			wynikF[col1][i] = wynikF[col2][i];
-			wynikF[col2][i] = temp[0][i];
+			temp[i][0] = wynikF[i][col1];
+			wynikF[i][col1] = wynikF[i][col2];
+			wynikF[i][col2] = temp[i][0];
 		}
 		
 	}
+	
+
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	public int[] biggestInRowColumn(int rowNumber) {
 		int[] res = new int[2];
 		if(type == Float.class) {
 			T biggest = wynikF[rowNumber][rowNumber];
+			res[0]=rowNumber;
+			res[1]=rowNumber;
 			for(int i = rowNumber; i < height; i++) {
 				if((float)wynikF[rowNumber][i] > (float)biggest) {
 					biggest = wynikF[rowNumber][i];
@@ -733,6 +777,8 @@ public class MyMatrix<T> {
 			return res;
 		}else if(type == Double.class) {
 			T biggest = wynikF[rowNumber][rowNumber];
+			res[0]=rowNumber;
+			res[1]=rowNumber;
 			for(int i = rowNumber; i < height; i++) {
 				if((double)wynikF[rowNumber][i] > (double)biggest) {
 					biggest = wynikF[rowNumber][i];
@@ -750,7 +796,9 @@ public class MyMatrix<T> {
 			return res;
 
 		}else if(type == TC.class) {
-			TC biggest = (TC) wynikF[rowNumber][0];
+			TC biggest = (TC) wynikF[rowNumber][rowNumber];
+			res[0]=rowNumber;
+			res[1]=rowNumber;
 			for(int i = rowNumber; i < height; i++) {
 				TC current = (TC) wynikF[rowNumber][i];
 				
@@ -815,7 +863,7 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -13);
+		double epsilon = Math.pow(10, -6);
 		boolean isSolution = false;
 		for(counter = 0 ; counter <= width - 2 ; counter++)
 		{
@@ -849,18 +897,17 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -13);
+		double epsilon = Math.pow(10, -6);
 		boolean isSolution = false;
 		int biggestInColumn;
 		for(counter = 0 ; counter <= width - 2 ; counter++)
 		{
-			//biggestInCloumn=biggestInColumnH(counter);	
-			//swapRowesH(biggestInRow, counter);
-			for(counter2 = counter + 1 ; counter2 <= width - 1 ; counter2++)
+			biggestInColumn=biggestInColumnH(counter);	
+			swapRowesH(biggestInColumn, counter);
+			for(counter2 = counter + 1 ; counter2 <= width -1 ; counter2++)
 			{
 				if(cmp(abs(wynikH[counter][counter]) , epsilon) == -1)
 					break;
-
 				multiplier = neg(div((wynikH[counter2][counter]),(wynikH[counter][counter])));
 				for(counter3 = counter + 1 ; counter3 <= width ; counter3++)
 				{
@@ -886,19 +933,19 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -13);
+		double epsilon = Math.pow(10, -6);
 		boolean isSolution = false;
 		int biggestInRowColumn[];
 		for(counter = 0 ; counter <= width - 2 ; counter++)
 		{
 
-			for(counter2 = counter + 1 ; counter2 <= width - 1 ; counter2++)
+			biggestInRowColumn=biggestInRowColumn(counter);	
+			swapRowes(biggestInRowColumn[0], counter);
+			swapColumns(biggestInRowColumn[1], counter);
+			for(counter2 = counter + 1 ; counter2 <= width -1 ; counter2++)
 			{
 				if(cmp(abs(wynikF[counter][counter]) , epsilon) == -1)
 					break;
-				biggestInRowColumn=biggestInRowColumn(counter);	
-				swapRowes(biggestInRowColumn[0], counter2);
-				swapColumns(biggestInRowColumn[1], counter);
 				multiplier = neg(div((wynikF[counter2][counter]),(wynikF[counter][counter])));
 				for(counter3 = counter + 1 ; counter3 <= width ; counter3++)
 				{
