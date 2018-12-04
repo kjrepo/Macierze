@@ -1,5 +1,7 @@
 package app;
 
+import java.io.PrintWriter;
+
 //TODO compareTo(T,double){return 1 or return 0}
 //TODO opposite(T){return-T}
 
@@ -859,7 +861,7 @@ public class MyMatrix<T> {
 	
 	
 	
-	
+
 	
 	
 	
@@ -897,7 +899,7 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -16);
+		double epsilon = Math.pow(10, -14);
 		boolean isSolution = false;
 		for(counter = 0 ; counter <= width - 2 ; counter++)
 		{
@@ -931,7 +933,7 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -16);
+		double epsilon = Math.pow(10, -14);
 		boolean isSolution = false;
 		int biggestInColumn;
 		for(counter = 0 ; counter <= width - 2 ; counter++)
@@ -968,7 +970,7 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -16);
+		double epsilon = Math.pow(10, -14);
 		boolean isSolution = false;
 		int biggestInRowColumn[];
 		for(counter = 0 ; counter <= width - 2 ; counter++)
