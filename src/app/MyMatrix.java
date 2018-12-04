@@ -771,6 +771,10 @@ public class MyMatrix<T> {
 			wynikF[i][col1] = wynikF[i][col2];
 			wynikF[i][col2] = temp[i][0];
 			
+			temp[i][0] = tempF[i][col1];
+			tempF[i][col1] = tempF[i][col2];
+			tempF[i][col2] = temp[i][0];
+			
 		}
 		
 	}
