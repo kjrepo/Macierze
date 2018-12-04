@@ -533,6 +533,10 @@ public class MyMatrix<T> {
 			temp[i][0] = wynikH[i][row1];
 			wynikH[i][row1] = wynikH[i][row2];
 			wynikH[i][row2] = temp[i][0];
+			
+			//
+			
+
 		}
 		
 	}
@@ -543,7 +547,18 @@ public class MyMatrix<T> {
 			temp[0][i] = wynikH[col1][i];
 			wynikH[col1][i] = wynikH[col2][i];
 			wynikH[col2][i] = temp[0][i];
+			
+			//swap tablicy sprawdzjacej
 		}
+		for(int i = 0; i <width; i++) {
+			temp[0][i] = tempH[col1][i];
+			tempH[col1][i] = tempH[col2][i];
+			tempH[col2][i] = temp[0][i];
+		}
+		temp[0][0] = tempVH[col1][0];
+		tempVH[col1][0] = tempVH[col2][0];
+		tempVH[col2][0] = temp[0][0];
+		
 		
 	}
 	
@@ -733,8 +748,20 @@ public class MyMatrix<T> {
 			temp[0][i] = wynikF[row1][i];
 			wynikF[row1][i] = wynikF[row2][i];
 			wynikF[row2][i] = temp[0][i];
+			
+			//
+			
+
+		}
+		for(int i = 0; i <width; i++) {
+			temp[0][i] = tempF[row1][i];
+			tempF[row1][i] = tempF[row2][i];
+			tempF[row2][i] = temp[0][i];
 		}
 		
+		temp[0][0] = tempVF[row1][0];
+		tempVF[row1][0] = tempVF[row2][0];
+		tempVF[row2][0] = temp[0][0];
 	}
 	
 	public void swapColumns(int col1, int col2) {
@@ -743,6 +770,7 @@ public class MyMatrix<T> {
 			temp[i][0] = wynikF[i][col1];
 			wynikF[i][col1] = wynikF[i][col2];
 			wynikF[i][col2] = temp[i][0];
+			
 		}
 		
 	}
@@ -863,7 +891,7 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -6);
+		double epsilon = Math.pow(10, -16);
 		boolean isSolution = false;
 		for(counter = 0 ; counter <= width - 2 ; counter++)
 		{
@@ -897,13 +925,14 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -6);
+		double epsilon = Math.pow(10, -16);
 		boolean isSolution = false;
 		int biggestInColumn;
 		for(counter = 0 ; counter <= width - 2 ; counter++)
 		{
 			biggestInColumn=biggestInColumnH(counter);	
 			swapRowesH(biggestInColumn, counter);
+			
 			for(counter2 = counter + 1 ; counter2 <= width -1 ; counter2++)
 			{
 				if(cmp(abs(wynikH[counter][counter]) , epsilon) == -1)
@@ -933,7 +962,7 @@ public class MyMatrix<T> {
 		int counter, counter2, counter3;
 		T multiplier;
 		T sum;
-		double epsilon = Math.pow(10, -6);
+		double epsilon = Math.pow(10, -16);
 		boolean isSolution = false;
 		int biggestInRowColumn[];
 		for(counter = 0 ; counter <= width - 2 ; counter++)

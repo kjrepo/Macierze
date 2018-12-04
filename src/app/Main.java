@@ -34,7 +34,7 @@ public class Main {
 		testTC.GaussHalfChoice();
 		testTC.GaussFullChoice();
 		testTC.chceck();
-//		testTC.chceckh();
+	//	testTC.chceckh();
 //		testTC.chceckf();
 		
 	
