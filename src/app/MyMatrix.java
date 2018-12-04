@@ -541,6 +541,8 @@ public class MyMatrix<T> {
 		
 	}
 	
+	
+	
 	public void swapRowesH(int col1, int col2) {
 		T[][] temp = (T[][]) new Object[1][width+1];
 		for(int i = 0; i <width+1; i++) {
@@ -709,7 +711,7 @@ public class MyMatrix<T> {
 		int res=0;
 		if(type == Float.class) {
 			T biggest = wynikH[0][rowNumber];
-			for(int i = 1; i < height; i++) {
+			for(int i = 0; i < height; i++) {
 				if((float)wynikH[i][rowNumber] > (float)biggest) {
 					biggest = wynikH[i][rowNumber];
 					res=i;
@@ -719,7 +721,7 @@ public class MyMatrix<T> {
 			return res;
 		}else if(type == Double.class) {
 			T biggest = wynikH[0][rowNumber];
-			for(int i = 1; i < height; i++) {
+			for(int i = 0; i < height; i++) {
 				if((double)wynikH[i][rowNumber] > (double)biggest) {
 					biggest = wynikH[i][rowNumber];
 					res=i;
