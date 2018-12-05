@@ -1,5 +1,6 @@
 package app;
 
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 //TODO compareTo(T,double){return 1 or return 0}
@@ -32,11 +33,16 @@ public class MyMatrix<T> {
 	private final Class<T> type;
 	final int zakres= 65536;
 
+
+
 	
 	/////
+	
+
+	
 
 	@SuppressWarnings("unchecked")
-	public void chceck() {
+	public T chceck() {
 		T wyniczek = (T) new Object();
 		for(int i = 0 ; i < width ; i++) {
 			if (i==0)
@@ -45,10 +51,13 @@ public class MyMatrix<T> {
 				wyniczek = add(wyniczek,mul(temp[0][i],vector[i][0]));
 		}
 		System.out.println(abs(sub(tempV[0][0],wyniczek)));
+		
+		return abs(sub(tempV[0][0],wyniczek));
+
 	}
 
 	@SuppressWarnings("unchecked")
-	public void chceckf() {
+	public T chceckf() {
 		T wyniczekf = (T) new Object();
 		for(int i = 0 ; i < width ; i++) {
 			if (i==0)
@@ -57,10 +66,12 @@ public class MyMatrix<T> {
 				wyniczekf = add(wyniczekf,mul(tempF[0][i],vectorF[i][0]));
 		}
 		System.out.println(abs(sub(tempVF[0][0],wyniczekf)));
+		return abs(sub(tempVF[0][0],wyniczekf));
+
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void chceckh() {
+	public T chceckh() {
 		T wyniczekh = (T) new Object();
 		for(int i = 0 ; i < width ; i++) {
 			if (i==0)
@@ -69,6 +80,8 @@ public class MyMatrix<T> {
 				wyniczekh = add(wyniczekh,mul(tempH[0][i],vectorH[i][0]));
 		}
 		System.out.println(abs(sub(tempVH[0][0],wyniczekh)));
+		return abs(sub(tempVH[0][0],wyniczekh));
+
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -89,6 +102,7 @@ public class MyMatrix<T> {
 		tempF = (T[][]) new Object[width][height];
 		wynikF = (T[][]) new Object[width][height+1];
 		vectorF = (T[][]) new Object[width][1];
+
 
 		
 		this.height = height;
@@ -893,7 +907,6 @@ public class MyMatrix<T> {
 	}
 	
 
-
 	public void GaussNoChoice()
 	{
 		int counter, counter2, counter3;
@@ -926,6 +939,7 @@ public class MyMatrix<T> {
 			vector[counter][0] = div(sum,wynik[counter][counter]);
 			isSolution = true;
 		}
+		
 	}
 	
 	public void GaussHalfChoice()
