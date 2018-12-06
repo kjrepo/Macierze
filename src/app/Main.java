@@ -2,7 +2,6 @@ package app;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 
 public class Main {
 
@@ -13,14 +12,25 @@ public class Main {
 		MyMatrix<TC> testTC = new MyMatrix<>(10, 10, TC.class);
 		
 		
-		PrintWriter zapis = null;
+		PrintWriter zapisF = null;
+		PrintWriter zapisD = null;
+		PrintWriter zapisTC = null;
+		PrintWriter zapisNo = null;
+		PrintWriter zapisHalf = null;
+		PrintWriter zapisFull = null;
+
 		try {
-			zapis = new PrintWriter("dane.txt");
+			zapisF = new PrintWriter("float.txt");
+			zapisD = new PrintWriter("double.txt");
+			zapisTC = new PrintWriter("tc.txt");
+			zapisNo = new PrintWriter("noChoice.txt");
+			zapisHalf = new PrintWriter("Half.txt");
+			zapisFull = new PrintWriter("full.txt");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		zapis.print("");
+		
 	
 		for(int i = 0; i < 101; i++) {
 			
@@ -34,9 +44,12 @@ public class Main {
 		testF.chceck();
 		testF.chceckh();
 		testF.chceckf();
-		zapis.print(testF.chceck()+",");
-		zapis.print(testF.chceckh()+",");
-		zapis.println(testF.chceckf());
+		zapisF.print(testF.chceck()+";");
+		zapisF.print(testF.chceckh()+";");
+		zapisF.print(testF.chceckf()+";");
+		zapisNo.print(testF.chceck()+";");
+		zapisHalf.print(testF.chceckh()+";");
+		zapisFull.print(testF.chceckf()+";");
 
 		
 
@@ -48,12 +61,18 @@ public class Main {
 		testD.chceck();
 		testD.chceckh();
 		testD.chceckf();
-		zapis.print(testD.chceck()+",");
-		zapis.print(testD.chceckh()+",");
-		zapis.println(testD.chceckf());
+		zapisD.print(testD.chceck()+";");
+		zapisD.print(testD.chceckh()+";");
+		zapisD.print(testD.chceckf()+";");
+		zapisNo.print(testD.chceck()+";");
+		zapisHalf.print(testD.chceckh()+";");
+		zapisFull.print(testD.chceckf()+";");
 		
 		testTC.pop();
 		testTC.popVector();
+		
+		zapisTC.print(testTC.chceck());
+		zapisNo.print(testTC.chceck());
 	//	testTC.GaussNoChoice();
 	//	testTC.GaussHalfChoice();
 	//	testTC.GaussFullChoice();
@@ -64,7 +83,13 @@ public class Main {
 
 //		
 		}
-		zapis.close();
+		zapisF.close();
+		zapisD.close();
+		zapisTC.close();
+		zapisNo.close();
+		zapisHalf.close();
+		zapisFull.close();
+
 		
 		long time1 = System.currentTimeMillis();
 		long time2 = System.currentTimeMillis();
