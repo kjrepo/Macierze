@@ -46,7 +46,7 @@ public class Main {
 		testF.chceckf();
 		zapisF.print(testF.chceck()+";");
 		zapisF.print(testF.chceckh()+";");
-		zapisF.print(testF.chceckf()+";");
+		zapisF.println(testF.chceckf()+";");
 		zapisNo.print(testF.chceck()+";");
 		zapisHalf.print(testF.chceckh()+";");
 		zapisFull.print(testF.chceckf()+";");
@@ -63,16 +63,16 @@ public class Main {
 		testD.chceckf();
 		zapisD.print(testD.chceck()+";");
 		zapisD.print(testD.chceckh()+";");
-		zapisD.print(testD.chceckf()+";");
+		zapisD.println(testD.chceckf()+";");
 		zapisNo.print(testD.chceck()+";");
-		zapisHalf.print(testD.chceckh()+";");
-		zapisFull.print(testD.chceckf()+";");
+		zapisHalf.println(testD.chceckh()+";");
+		zapisFull.println(testD.chceckf()+";");
 		
 		testTC.pop();
 		testTC.popVector();
 		
-		zapisTC.print(testTC.chceck());
-		zapisNo.print(testTC.chceck());
+		zapisTC.println(testTC.chceck());
+		zapisNo.println(testTC.chceck());
 	//	testTC.GaussNoChoice();
 	//	testTC.GaussHalfChoice();
 	//	testTC.GaussFullChoice();
